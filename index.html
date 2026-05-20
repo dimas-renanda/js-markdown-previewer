@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><title>Markdown Previewer</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+  *{box-sizing:border-box}body{margin:0;font-family:sans-serif;background:#f0f2f5;height:100vh;display:flex;flex-direction:column}
+  header{background:#24292e;color:#fff;padding:1rem 1.5rem;font-size:1.2rem}
+  .panes{display:flex;flex:1;overflow:hidden}
+  textarea,#preview{flex:1;padding:1rem;overflow:auto;font-size:.95rem}
+  textarea{background:#1e1e1e;color:#d4d4d4;border:none;resize:none;font-family:monospace;outline:none;border-right:3px solid #444}
+  #preview{background:#fff;line-height:1.6}
+  #preview pre{background:#f6f8fa;padding:1rem;border-radius:6px;overflow:auto}
+  #preview code{background:#f6f8fa;padding:.2em .4em;border-radius:3px}
+</style>
+</head>
+<body>
+<header>📝 Markdown Previewer</header>
+<div class="panes">
+  <textarea id="src" placeholder="Write Markdown here..."># Hello World
+
+**Bold**, *italic*, `code`.
+
+- Item 1
+- Item 2
+
+> A blockquote
+
+```js
+console.log('Hello!')
+```
+</textarea>
+  <div id="preview"></div>
+</div>
+<script>
+const src=document.getElementById('src'),pre=document.getElementById('preview');
+function render(){pre.innerHTML=marked.parse(src.value)}
+src.addEventListener('input',render);render();
+</script>
+</body></html>
